@@ -53,7 +53,7 @@ cd agenda-de-eventos # Ajuste o nome da pasta, se necessário
 
 2. **Compile o código Se estiver usando GCC:**
 ```bash
-gcc -o agenda main.c
+gcc -o agenda main.c functions.c
 ```
 
 ## 🎮 Como Usar
