@@ -27,6 +27,8 @@ void mostrarTodosEventos(Evento *lista, int quantidade);
 void mostrarEventosPorData(Evento *lista, int quantidade);
 void mostrarEventosPorDescricao(Evento *lista, int quantidade);
 void removerEvento(Evento **lista, int *quantidade);
+void ordenarEventos(Evento *lista, int quantidade);
+int conflitoEvento(Evento *lista, int quantidade, Evento novo);
 void salvarEventos(Evento *lista, int quantidade);
 void carregarEventos(Evento **lista, int *quantidade);
 
