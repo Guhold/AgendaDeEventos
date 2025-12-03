@@ -1,40 +1,58 @@
-#include "definitions.h"
-#include <windows.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
+#include "definitions.h"
+#include <windows.h>
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8); // Possibilita o uso de caracteres especiais
-    FILE *arquivo;
-    int opcaoEscolhida;
-    menuInicial();
-    
+    SetConsoleOutputCP(CP_UTF8); // Apenas para poder utilizar acentos e caracteres UNICODE
+
+    Evento *listaEventos = NULL;
+    int quantidade = 0;
+
+    carregarEventos(&listaEventos, &quantidade);
+
+    int opcao;
 
     do {
-        opcaoEscolhida = lerInteiro();
+        exibirMenu();
 
-        switch (opcaoEscolhida){
+        printf("> ");
+        opcao = lerInteiro();
+
+        switch (opcao) {
             case 1:
-                cadastraEvento();
+                cadastrarEvento(&listaEventos, &quantidade);
                 break;
-            case 2: 
-                mostraEventos();
+
+            case 2:
+                mostrarTodosEventos(listaEventos, quantidade);
                 break;
+
             case 3:
-                mostraEventosData();
+                mostrarEventosPorData(listaEventos, quantidade);
                 break;
+
             case 4:
-                mostraEventosDesc();
+                mostrarEventosPorDescricao(listaEventos, quantidade);
                 break;
+
             case 5:
-                removeEvento();
+                removerEvento(&listaEventos, &quantidade);
                 break;
-            case 6: break;
+
+            case 6:
+                salvarEventos(listaEventos, quantidade);
+                printf("Eventos salvos. Encerrando...\n");
+                break;
+
             default:
-                erroDigitoInvalido();
+                printf("Opção inválida.\n");
+                esperarEnter();
                 break;
         }
-    } while (opcaoEscolhida != 6);
+
+    } while (opcao != 6);
+
+    free(listaEventos);
+    return 0;
 }

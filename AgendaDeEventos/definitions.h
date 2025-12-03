@@ -3,26 +3,31 @@
 
 typedef struct {
     int dia, mes, ano;
-} data;
+} Data;
 
 typedef struct {
     int hora, minuto;
-} horario;
+} Horario;
 
 typedef struct {
-    data diaEvento;
-    horario horarioInicio;
-    horario horarioFim;
+    Data data;
+    Horario inicio;
+    Horario fim;
     char descricao[50];
     char local[50];
-} evento;
+} Evento;
 
-void menuInicial();
+void limparTela();
+void pcenter(char texto[]);
+void esperarEnter();
 int lerInteiro();
-void cadastraEvento();
-void mostraEventos();
-void mostraEventosData();
-void mostraEventosDesc();
-void removeEvento();
-void erroDigitoInvalido();
+void exibirMenu();
+void cadastrarEvento(Evento **lista, int *quantidade);
+void mostrarTodosEventos(Evento *lista, int quantidade);
+void mostrarEventosPorData(Evento *lista, int quantidade);
+void mostrarEventosPorDescricao(Evento *lista, int quantidade);
+void removerEvento(Evento **lista, int *quantidade);
+void salvarEventos(Evento *lista, int quantidade);
+void carregarEventos(Evento **lista, int *quantidade);
+
 #endif
